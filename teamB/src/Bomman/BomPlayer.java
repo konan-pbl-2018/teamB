@@ -1,4 +1,4 @@
-package template.maze2D;
+package Bomman;
 
 import framework.game2D.Sprite;
 
@@ -8,9 +8,9 @@ import framework.game2D.Sprite;
  * @author T.Kuno
  *
  */
-public class MazeSpritePlayer extends Sprite {
+public class BomPlayer extends Sprite {
 
-	public MazeSpritePlayer(String imageFile) {
+	public BomPlayer(String imageFile) {
 		super(imageFile);
 	}
 

@@ -1,4 +1,5 @@
-package template.maze2D;
+package Bomman;
+
 
 import framework.RWT.RWTFrame3D;
 import framework.RWT.RWTVirtualController;
@@ -8,7 +9,7 @@ import framework.model3D.Universe;
 import template.maze2D.MazeSpritePlayer;
 import template.maze2D.MazeStage;
 
-public class TemplateMazeGame2D extends SimpleMazeGame {
+public class Bomman extends SimpleMazeGame {
 	private MazeSpritePlayer mazeSpritePlayer;
 	private MazeStage mazeGround;
 
@@ -167,7 +168,7 @@ public class TemplateMazeGame2D extends SimpleMazeGame {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		TemplateMazeGame2D game = new TemplateMazeGame2D();
+		Bomman game = new Bomman();
 		game.setFramePolicy(5, 33, false);
 		game.start();
 	}

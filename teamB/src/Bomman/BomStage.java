@@ -1,4 +1,4 @@
-package template.maze2D;
+package Bomman;
 
 import java.math.BigDecimal;
 
@@ -10,9 +10,9 @@ import template.maze2D.MazeSpritePlayer;
  * @author T.Kuno
  *
  */
-public class MazeStage extends Maze2D {
+public class BomStage extends Maze2D {
 	// コンストラクタ
-	public MazeStage(String blockImage, String tileImage) {
+	public BomStage(String blockImage, String tileImage) {
 		super(blockImage, tileImage);
 	}
 
