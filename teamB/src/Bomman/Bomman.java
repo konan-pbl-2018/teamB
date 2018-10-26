@@ -7,11 +7,10 @@ import framework.game2D.Position2D;
 import framework.gameMain.SimpleMazeGame;
 import framework.model3D.Universe;
 import template.maze2D.MazeSpritePlayer;
-import template.maze2D.MazeStage;
 
 public class Bomman extends SimpleMazeGame {
 	private MazeSpritePlayer mazeSpritePlayer;
-	private MazeStage mazeGround;
+	private BomStage mazeGround;
 
 	// 速度によって物体が動いている時にボタンを押せるかどうかを判定するフラグ
 	private boolean disableControl = false;
@@ -20,7 +19,10 @@ public class Bomman extends SimpleMazeGame {
 
 	@Override
 	public void init(Universe universe) {
-		mazeGround = new MazeStage("data\\images\\block.gif", "data\\images\\Tile.gif");
+
+
+
+		mazeGround = new BomStage("data\\images\\block.gif", "data\\images\\sibafu.jpg");
 		universe.place(mazeGround);
 		camera.addTarget(mazeGround);
 
