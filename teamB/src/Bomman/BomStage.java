@@ -1,6 +1,7 @@
 package Bomman;
 
 import java.math.BigDecimal;
+import java.util.Random;
 
 import framework.game2D.Maze2D;
 import template.maze2D.MazeSpritePlayer;
@@ -18,32 +19,28 @@ public class BomStage extends Maze2D {
 
 	// 抽象メソッドの実装
 	//　0:タイル　1:ブロック　
-	@Override
+	//@Override
+	
+	Random rand = new Random();
+	
 	public int[][] createMap() {
-		int[][] map = {
-				{1,1,1,1,1,1,1,1,1,1,1},
-				{1,0,0,0,0,0,0,0,0,0,1},
-				{1,0,1,0,1,0,1,0,1,0,1},
-				{1,0,0,0,0,0,0,0,0,0,1},
-				{1,0,1,0,1,0,1,0,1,0,1},
-				{1,0,0,0,0,0,0,0,0,0,1},
-				{1,0,1,0,1,0,1,0,1,0,1},
-				{1,0,0,0,0,0,0,0,0,0,1},
-				{1,0,1,0,1,0,1,0,1,0,1},
-				{1,0,0,0,0,0,0,0,0,0,1},
-				{1,1,1,1,1,1,1,1,1,1,1}
-
-//				{1,1,1,1,1},
-//				{1,0,0,0,1},
-//				{1,0,1,0,1},
-//				{1,0,0,0,1},
-//				{1,1,1,1,1}
-
-//				{1}
-
-//				{1,0},
-//				{1,1}
-		};
+		
+		int Y = 13; int X = 15;
+		
+		int[][] map = new int[Y][X];
+		
+		int flag;
+		
+		for(int j = 0 ; j < Y ; j ++) {
+			for(int i = 0 ; i < X ; i ++) {
+				if((j%2 == 0 && i%2 == 0) || i == 0 || j == 0 || i == X-1 || j == Y-1) {
+					map[j][i] = 1;
+				}else {
+					map[j][i] = 0;
+				}
+			}
+		}
+		
 		return map;
 	}
 
@@ -56,7 +53,7 @@ public class BomStage extends Maze2D {
 				.getPosition().getY()).setScale(1, BigDecimal.ROUND_DOWN)
 				.doubleValue();
 
-		// ステージの構成オブジェクトの位置とプレイヤーの位置が同じかどうかっ判定する
+		// ステージの構成オブジェクトの位置とプレイヤーの位置が同じかどうか判定する
 		for (int i = 0; i < this.getStageObjectList().size(); i++) {
 			if (
 					mazeSpritePositionX == this.getStageObjectList().get(i).getPosition().getX()
