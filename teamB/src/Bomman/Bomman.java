@@ -1,6 +1,5 @@
 package Bomman;
 
-
 import framework.RWT.RWTFrame3D;
 import framework.RWT.RWTVirtualController;
 import framework.game2D.Position2D;
@@ -38,7 +37,7 @@ public class Bomman extends SimpleMazeGame {
 		if (gridPoint != null) {
 			mazeSpritePlayer.setPosition(gridPoint);
 			mazeSpritePlayer.setVelocity(0.0, 0.0);
-			disableControl = false;
+			//disableControl = false;
 		}
 
 		// キャラが移動していなければ、キー操作の処理を行える。
@@ -156,7 +155,7 @@ public class Bomman extends SimpleMazeGame {
 	@Override
 	public RWTFrame3D createFrame3D() {
 		RWTFrame3D f = new RWTFrame3D();
-		f.setSize(1980, 1080);
+		f.setSize(800, 800);
 		f.setTitle("bom man");
 		return f;
 	}
@@ -168,7 +167,7 @@ public class Bomman extends SimpleMazeGame {
 	 */
 	public static void main(String[] args) {
 		Bomman game = new Bomman();
-		game.setFramePolicy(5, 33, false);
+//		game.setFramePolicy(5, 33, false);
 		game.start();
 	}
 

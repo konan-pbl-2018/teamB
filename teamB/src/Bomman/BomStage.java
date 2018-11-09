@@ -16,7 +16,7 @@ public class BomStage extends Maze2D {
 	public BomStage(String blockImage, String tileImage) {
 		super(blockImage, tileImage);
 	}
-
+	//
 	// 抽象メソッドの実装
 	//　0:タイル　1:ブロック　
 	//@Override
