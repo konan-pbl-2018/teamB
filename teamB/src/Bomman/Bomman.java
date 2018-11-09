@@ -10,20 +10,26 @@ import template.maze2D.MazeSpritePlayer;
 
 public class Bomman extends SimpleMazeGame {
 	private MazeSpritePlayer mazeSpritePlayer;
+
 	private MazeSpritePlayer mazeSpritePlayer2;
+
 	private BomStage mazeGround;
 
 	// 速度によって物体が動いている時にボタンを押せるかどうかを判定するフラグ
 	private boolean disableControl = false;
 
-	private long lastTime;
+	//private long lastTime;
 
 	@Override
 	public void init(Universe universe) {
 
 
 
+
 		mazeGround = new BomStage("data\\images\\block.gif", "data\\images\\sibafu.jpg");
+
+		mazeGround = new BomStage("data\\images\\block.gif","data\\images\\sibafu.jpg");
+
 		universe.place(mazeGround);
 		camera.addTarget(mazeGround);
 
@@ -52,7 +58,7 @@ public class Bomman extends SimpleMazeGame {
 		}
 
 		// キャラが移動していなければ、キー操作の処理を行える。
-		if(!disableControl){
+		//if(!disableControl){
 			// キー操作の処理
 			// 左
 			if (virtualController.isKeyDown(0, RWTVirtualController.LEFT)) {
@@ -75,7 +81,7 @@ public class Bomman extends SimpleMazeGame {
 				mazeSpritePlayer.setVelocity(0.0, -2.0);
 				disableControl = true;
 			}
-		}
+		//}
 		mazeSpritePlayer.motion(interval, mazeGround);
 
 		Position2D gridPoint1 = mazeGround.getNeighborGridPoint(mazeSpritePlayer2);
@@ -117,99 +123,12 @@ public class Bomman extends SimpleMazeGame {
 
 	}
 
-//
-//
-
-
-	// public void progress(RWTVirtualController virtualController, long
-	// interval) {
-	// velocityFlg = mazeGround.checkVelocityZero(mazeSpritePlayer);
-	// if (velocityFlg) {
-	// mazeSpritePlayer.setVelocity(0.0, 0.0);
-	// }
-	// // キー操作の処理
-	// // 左
-	// if (!bMove) {
-	// if (virtualController.isKeyDown(0, RWTVirtualController.LEFT)) {
-	// // mazeSpritePlayer.setVelocity(-2.0, 0.0);
-	// mazeSpritePlayer.setPosition(mazeSpritePlayer.getPosition()
-	// .getX() - 2.0, mazeSpritePlayer.getPosition().getY());
-	// // 上
-	// if (virtualController.isKeyDown(0, RWTVirtualController.UP)) {
-	// mazeSpritePlayer.addVelocity(0.0, 2.0);
-	// }
-	// // 下
-	// else if (virtualController.isKeyDown(0,
-	// RWTVirtualController.DOWN)) {
-	// mazeSpritePlayer.addVelocity(0.0, -2.0);
-	// }
-	// bMove = true;
-	// }
-	// // 右
-	// else if (virtualController.isKeyDown(0, RWTVirtualController.RIGHT)) {
-	// // mazeSpritePlayer.setVelocity(2.0, 0.0);
-	// mazeSpritePlayer.setPosition(mazeSpritePlayer.getPosition()
-	// .getX() + 2.0, mazeSpritePlayer.getPosition().getY());
-	//
-	// // 上
-	// if (virtualController.isKeyDown(0, RWTVirtualController.UP)) {
-	// mazeSpritePlayer.addVelocity(0.0, 2.0);
-	// }
-	// // 下
-	// else if (virtualController.isKeyDown(0,
-	// RWTVirtualController.DOWN)) {
-	// mazeSpritePlayer.addVelocity(0.0, -2.0);
-	// }
-	// bMove = true;
-	// }
-	// // 上
-	// else if (virtualController.isKeyDown(0, RWTVirtualController.UP)) {
-	// // mazeSpritePlayer.setVelocity(0.0, 2.0);
-	// mazeSpritePlayer.setPosition(mazeSpritePlayer.getPosition()
-	// .getX(), mazeSpritePlayer.getPosition().getY() + 2.0);
-	//
-	// // 左
-	// if (virtualController.isKeyDown(0, RWTVirtualController.LEFT)) {
-	// mazeSpritePlayer.addVelocity(-2.0, 0.0);
-	// }
-	// // 右
-	// else if (virtualController.isKeyDown(0,
-	// RWTVirtualController.RIGHT)) {
-	// mazeSpritePlayer.addVelocity(2.0, 0.0);
-	// }
-	// bMove = true;
-	// }
-	// // 下
-	// else if (virtualController.isKeyDown(0, RWTVirtualController.DOWN)) {
-	// // mazeSpritePlayer.setVelocity(0.0, -2.0);
-	// mazeSpritePlayer.setPosition(mazeSpritePlayer.getPosition()
-	// .getX(), mazeSpritePlayer.getPosition().getY() - 2.0);
-	//
-	// // 左
-	// if (virtualController.isKeyDown(0, RWTVirtualController.LEFT)) {
-	// mazeSpritePlayer.addVelocity(-2.0, 0.0);
-	// }
-	// // 右
-	// else if (virtualController.isKeyDown(0,
-	// RWTVirtualController.RIGHT)) {
-	// mazeSpritePlayer.addVelocity(2.0, 0.0);
-	// }
-	// bMove = true;
-	// }
-	// lastTime = System.currentTimeMillis();
-	// }
-	//
-	// if (System.currentTimeMillis() - lastTime > 250) {
-	// bMove = false;
-	// }
-	// mazeSpritePlayer.motion(interval, mazeGround);
-	// }
 
 	@Override
 	public RWTFrame3D createFrame3D() {
 		RWTFrame3D f = new RWTFrame3D();
-		f.setSize(800, 800);
-		f.setTitle("Template for Mage 2DGame");
+		f.setSize(1980, 1080);
+		f.setTitle("bom man");
 		return f;
 	}
 
