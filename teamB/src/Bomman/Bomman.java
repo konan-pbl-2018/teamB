@@ -114,7 +114,7 @@ public class Bomman extends SimpleMazeGame {
 		}
 		mazeSpritePlayer2.motion(interval, mazeGround);
 
-
+		//
 	}
 
 
