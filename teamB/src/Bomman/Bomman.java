@@ -117,8 +117,8 @@ public class Bomman extends SimpleMazeGame {
 
 	}
 
-
-
+//
+//
 
 
 	// public void progress(RWTVirtualController virtualController, long
