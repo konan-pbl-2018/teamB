@@ -40,7 +40,22 @@ public class ExerciseGame extends SimpleShootingGame {
 		Sprite myShip = new Sprite("data\\images\\MyShip.gif");
 		universe.place(myShip);
 
-		setViewRange(30, 30);
+		//ステージの基礎の作成
+		int Y = 11; int X = 13;
+
+		int[][] base = new int[Y][X];
+
+		for(int y = 0 ; y < Y ; y ++) {
+			for(int x = 0 ; x < X ; x ++) {
+				if(x%2 == 0 || y%2 == 0) {
+					base[y][x] = 1;
+					universe.place(myShip);
+					setViewRange(50,50);
+				}else {
+					base[y][x] = 0;
+				}
+			}
+		}
 	}
 
 	@Override

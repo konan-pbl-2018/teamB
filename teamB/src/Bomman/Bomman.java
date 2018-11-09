@@ -17,14 +17,17 @@ public class Bomman extends SimpleMazeGame {
 	// 速度によって物体が動いている時にボタンを押せるかどうかを判定するフラグ
 	private boolean disableControl = false;
 
-	//private long lastTime;
-
 
 	@Override
 	public void init(Universe universe) {
+
 		mazeGround = new BomStage("data\\images\\block.gif", "data\\images\\sibafu.jpg");
 
-		universe.place(mazeGround);
+
+
+
+		mazeGround = new BomStage("data\\images\\brokenblock.png", "data\\images\\sibafu.jpg");
+	universe.place(mazeGround);
 		camera.addTarget(mazeGround);
 
 		//player1
@@ -38,6 +41,7 @@ public class Bomman extends SimpleMazeGame {
 		mazeSpritePlayer2.setPosition(2.0, 2.0);
 		mazeSpritePlayer2.setCollisionRadius(0.5);
 		universe.place(mazeSpritePlayer2);
+		//BGM3D.playBGM(fightBGM);
 	}
 
 	@Override
