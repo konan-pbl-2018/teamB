@@ -9,6 +9,9 @@ import template.maze2D.MazeSpritePlayer;
 
 public class Bomman extends SimpleMazeGame {
 	private MazeSpritePlayer mazeSpritePlayer;
+
+	private MazeSpritePlayer mazeSpritePlayer2;
+
 	private BomStage mazeGround;
 
 	// 速度によって物体が動いている時にボタンを押せるかどうかを判定するフラグ
@@ -18,14 +21,27 @@ public class Bomman extends SimpleMazeGame {
 
 	@Override
 	public void init(Universe universe) {
+
+
+
+
+		mazeGround = new BomStage("data\\images\\block.gif", "data\\images\\sibafu.jpg");
+
 		mazeGround = new BomStage("data\\images\\block.gif","data\\images\\sibafu.jpg");
+
 		universe.place(mazeGround);
 		camera.addTarget(mazeGround);
 
-		mazeSpritePlayer = new MazeSpritePlayer("data\\RPG\\player.png");
+		mazeSpritePlayer = new MazeSpritePlayer("data\\images\\maincharactor.png");
 		mazeSpritePlayer.setPosition(6.0, 2.0);
 		mazeSpritePlayer.setCollisionRadius(0.5);
 		universe.place(mazeSpritePlayer);
+
+
+		mazeSpritePlayer2 = new MazeSpritePlayer("data\\images\\enemycharctor.png");
+		mazeSpritePlayer2.setPosition(2.0, 6.0);
+		mazeSpritePlayer2.setCollisionRadius(0.5);
+		universe.place(mazeSpritePlayer2);
 	}
 
 	@Override
@@ -66,91 +82,46 @@ public class Bomman extends SimpleMazeGame {
 			}
 		//}
 		mazeSpritePlayer.motion(interval, mazeGround);
+
+		Position2D gridPoint1 = mazeGround.getNeighborGridPoint(mazeSpritePlayer2);
+
+		// 速度が0にするフラグが立っていれば、速度を0にする
+		if (gridPoint1 != null) {
+			mazeSpritePlayer2.setPosition(gridPoint1);
+			mazeSpritePlayer2.setVelocity(0.0, 0.0);
+			disableControl = false;
+		}
+
+		// キャラが移動していなければ、キー操作の処理を行える。
+		if(!disableControl){
+			// キー操作の処理
+			// 左
+			if (virtualController.isKeyDown(0, RWTVirtualController.BUTTON_B)) {
+				mazeSpritePlayer2.setVelocity(-2.0, 0.0);
+				disableControl = true;
+			}
+			// 右
+			else if (virtualController.isKeyDown(0, RWTVirtualController.BUTTON_A)) {
+				mazeSpritePlayer2.setVelocity(2.0, 0.0);
+				disableControl = true;
+
+			}
+			// 上
+			else if (virtualController.isKeyDown(0, RWTVirtualController.BUTTON_E)) {
+				mazeSpritePlayer2.setVelocity(0.0, 2.0);
+				disableControl = true;
+			}
+			// 下
+			else if (virtualController.isKeyDown(0, RWTVirtualController.BUTTON_C)) {
+				mazeSpritePlayer2.setVelocity(0.0, -2.0);
+				disableControl = true;
+			}
+		}
+		mazeSpritePlayer2.motion(interval, mazeGround);
+
+
 	}
 
-//	 public void progress(RWTVirtualController virtualController, long
-//	 interval) {
-//	 velocityFlg = mazeGround.checkVelocityZero(mazeSpritePlayer);
-//	 if (velocityFlg) {
-//	 mazeSpritePlayer.setVelocity(0.0, 0.0);
-//	 }
-//	 // キー操作の処理
-//	 // 左
-//	 if (!bMove) {
-//	 if (virtualController.isKeyDown(0, RWTVirtualController.LEFT)) {
-//	 // mazeSpritePlayer.setVelocity(-2.0, 0.0);
-//	 mazeSpritePlayer.setPosition(mazeSpritePlayer.getPosition()
-//	 .getX() - 2.0, mazeSpritePlayer.getPosition().getY());
-//	 // 上
-//	 if (virtualController.isKeyDown(0, RWTVirtualController.UP)) {
-//	 mazeSpritePlayer.addVelocity(0.0, 2.0);
-//	 }
-//	 // 下
-//	 else if (virtualController.isKeyDown(0,
-//	 RWTVirtualController.DOWN)) {
-//	 mazeSpritePlayer.addVelocity(0.0, -2.0);
-//	 }
-//	 bMove = true;
-//	 }
-//	 // 右
-//	 else if (virtualController.isKeyDown(0, RWTVirtualController.RIGHT)) {
-//	 // mazeSpritePlayer.setVelocity(2.0, 0.0);
-//	 mazeSpritePlayer.setPosition(mazeSpritePlayer.getPosition()
-//	 .getX() + 2.0, mazeSpritePlayer.getPosition().getY());
-//
-//	 // 上
-//	 if (virtualController.isKeyDown(0, RWTVirtualController.UP)) {
-//	 mazeSpritePlayer.addVelocity(0.0, 2.0);
-//	 }
-//	 // 下
-//	 else if (virtualController.isKeyDown(0,
-//	 RWTVirtualController.DOWN)) {
-//	 mazeSpritePlayer.addVelocity(0.0, -2.0);
-//	 }
-//	 bMove = true;
-//	 }
-//	 // 上
-//	 else if (virtualController.isKeyDown(0, RWTVirtualController.UP)) {
-//	 // mazeSpritePlayer.setVelocity(0.0, 2.0);
-//	 mazeSpritePlayer.setPosition(mazeSpritePlayer.getPosition()
-//	 .getX(), mazeSpritePlayer.getPosition().getY() + 2.0);
-//
-//	 // 左
-//	 if (virtualController.isKeyDown(0, RWTVirtualController.LEFT)) {
-//	 mazeSpritePlayer.addVelocity(-2.0, 0.0);
-//	 }
-//	 // 右
-//	 else if (virtualController.isKeyDown(0,
-//	 RWTVirtualController.RIGHT)) {
-//	 mazeSpritePlayer.addVelocity(2.0, 0.0);
-//	 }
-//	 bMove = true;
-//	 }
-//	 // 下
-//	 else if (virtualController.isKeyDown(0, RWTVirtualController.DOWN)) {
-//	 // mazeSpritePlayer.setVelocity(0.0, -2.0);
-//	 mazeSpritePlayer.setPosition(mazeSpritePlayer.getPosition()
-//	 .getX(), mazeSpritePlayer.getPosition().getY() - 2.0);
-//
-//	 // 左
-//	 if (virtualController.isKeyDown(0, RWTVirtualController.LEFT)) {
-//	 mazeSpritePlayer.addVelocity(-2.0, 0.0);
-//	 }
-//	 // 右
-//	 else if (virtualController.isKeyDown(0,
-//	 RWTVirtualController.RIGHT)) {
-//	 mazeSpritePlayer.addVelocity(2.0, 0.0);
-//	 }
-//	 bMove = true;
-//	 }
-//	 lastTime = System.currentTimeMillis();
-//	 }
-//
-//	 if (System.currentTimeMillis() - lastTime > 250) {
-//	 bMove = false;
-//	 }
-//	 mazeSpritePlayer.motion(interval, mazeGround);
-//	 }
 
 	@Override
 	public RWTFrame3D createFrame3D() {
