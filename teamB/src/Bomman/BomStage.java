@@ -20,17 +20,16 @@ public class BomStage extends Maze2D {
 	// 抽象メソッドの実装
 	//　0:タイル　1:ブロック　
 	//@Override
-	
+
 	Random rand = new Random();
-	
+
 	public int[][] createMap() {
-		
+
 		int Y = 13; int X = 15;
-		
+
 		int[][] map = new int[Y][X];
-		
-		int flag;
-		
+
+
 		for(int j = 0 ; j < Y ; j ++) {
 			for(int i = 0 ; i < X ; i ++) {
 				if((j%2 == 0 && i%2 == 0) || i == 0 || j == 0 || i == X-1 || j == Y-1) {
@@ -40,7 +39,7 @@ public class BomStage extends Maze2D {
 				}
 			}
 		}
-		
+
 		return map;
 	}
 
