@@ -2,8 +2,6 @@ package Bomman;
 
 import framework.RWT.RWTFrame3D;
 import framework.RWT.RWTVirtualController;
-import framework.audio.BGM3D;
-import framework.audio.Sound3D;
 import framework.game2D.Position2D;
 import framework.gameMain.SimpleMazeGame;
 import framework.model3D.Universe;
@@ -19,7 +17,6 @@ public class Bomman extends SimpleMazeGame {
 	// 速度によって物体が動いている時にボタンを押せるかどうかを判定するフラグ
 	private boolean disableControl = false;
 
-	private Sound3D fightBGM = BGM3D.registerBGM("data\\\\images\\last-war.wav");
 
 	@Override
 	public void init(Universe universe) {
@@ -44,7 +41,7 @@ public class Bomman extends SimpleMazeGame {
 		mazeSpritePlayer2.setPosition(2.0, 2.0);
 		mazeSpritePlayer2.setCollisionRadius(0.5);
 		universe.place(mazeSpritePlayer2);
-		BGM3D.playBGM(fightBGM);
+		//BGM3D.playBGM(fightBGM);
 	}
 
 	@Override
