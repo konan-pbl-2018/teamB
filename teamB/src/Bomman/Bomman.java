@@ -10,6 +10,7 @@ import template.maze2D.MazeSpritePlayer;
 
 public class Bomman extends SimpleMazeGame {
 	private MazeSpritePlayer mazeSpritePlayer;
+	private MazeSpritePlayer mazeSpritePlayer2;
 	private BomStage mazeGround;
 
 	// 速度によって物体が動いている時にボタンを押せるかどうかを判定するフラグ
@@ -26,10 +27,16 @@ public class Bomman extends SimpleMazeGame {
 		universe.place(mazeGround);
 		camera.addTarget(mazeGround);
 
-		mazeSpritePlayer = new MazeSpritePlayer("data\\RPG\\player.png");
+		mazeSpritePlayer = new MazeSpritePlayer("data\\images\\maincharactor.png");
 		mazeSpritePlayer.setPosition(6.0, 2.0);
 		mazeSpritePlayer.setCollisionRadius(0.5);
 		universe.place(mazeSpritePlayer);
+
+
+		mazeSpritePlayer2 = new MazeSpritePlayer("data\\images\\enemycharctor.png");
+		mazeSpritePlayer2.setPosition(2.0, 6.0);
+		mazeSpritePlayer2.setCollisionRadius(0.5);
+		universe.place(mazeSpritePlayer2);
 	}
 
 	@Override
@@ -70,7 +77,49 @@ public class Bomman extends SimpleMazeGame {
 			}
 		}
 		mazeSpritePlayer.motion(interval, mazeGround);
+
+		Position2D gridPoint1 = mazeGround.getNeighborGridPoint(mazeSpritePlayer2);
+
+		// 速度が0にするフラグが立っていれば、速度を0にする
+		if (gridPoint1 != null) {
+			mazeSpritePlayer2.setPosition(gridPoint1);
+			mazeSpritePlayer2.setVelocity(0.0, 0.0);
+			disableControl = false;
+		}
+
+		// キャラが移動していなければ、キー操作の処理を行える。
+		if(!disableControl){
+			// キー操作の処理
+			// 左
+			if (virtualController.isKeyDown(0, RWTVirtualController.BUTTON_B)) {
+				mazeSpritePlayer2.setVelocity(-2.0, 0.0);
+				disableControl = true;
+			}
+			// 右
+			else if (virtualController.isKeyDown(0, RWTVirtualController.BUTTON_A)) {
+				mazeSpritePlayer2.setVelocity(2.0, 0.0);
+				disableControl = true;
+
+			}
+			// 上
+			else if (virtualController.isKeyDown(0, RWTVirtualController.BUTTON_E)) {
+				mazeSpritePlayer2.setVelocity(0.0, 2.0);
+				disableControl = true;
+			}
+			// 下
+			else if (virtualController.isKeyDown(0, RWTVirtualController.BUTTON_C)) {
+				mazeSpritePlayer2.setVelocity(0.0, -2.0);
+				disableControl = true;
+			}
+		}
+		mazeSpritePlayer2.motion(interval, mazeGround);
+
+
 	}
+
+
+
+
 
 	// public void progress(RWTVirtualController virtualController, long
 	// interval) {

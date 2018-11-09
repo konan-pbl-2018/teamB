@@ -21,17 +21,17 @@ public class BomStage extends Maze2D {
 	@Override
 	public int[][] createMap() {
 		int[][] map = {
-				{1,1,1,1,1,1,1,1,1,1,1},
-				{1,0,0,0,0,0,0,0,0,0,1},
-				{1,0,1,0,1,0,1,0,1,0,1},
-				{1,0,0,0,0,0,0,0,0,0,1},
-				{1,0,1,0,1,0,1,0,1,0,1},
-				{1,0,0,0,0,0,0,0,0,0,1},
-				{1,0,1,0,1,0,1,0,1,0,1},
-				{1,0,0,0,0,0,0,0,0,0,1},
-				{1,0,1,0,1,0,1,0,1,0,1},
-				{1,0,0,0,0,0,0,0,0,0,1},
-				{1,1,1,1,1,1,1,1,1,1,1}
+				{1,1,1,1,1,1,1,1,1,1,1,1,1},
+				{1,0,0,0,0,0,0,0,0,0,0,0,1},
+				{1,0,1,0,1,0,1,0,1,0,1,0,1},
+				{1,0,0,0,0,0,0,0,0,0,0,0,1},
+				{1,0,1,0,1,0,1,0,1,0,1,0,1},
+				{1,0,0,0,0,0,0,0,0,0,0,0,1},
+				{1,0,1,0,1,0,1,0,1,0,1,0,1},
+				{1,0,0,0,0,0,0,0,0,0,0,0,1},
+				{1,0,1,0,1,0,1,0,1,0,1,0,1},
+				{1,0,0,0,0,0,0,0,0,0,0,0,1},
+				{1,1,1,1,1,1,1,1,1,1,1,1,1}
 
 //				{1,1,1,1,1},
 //				{1,0,0,0,1},
@@ -68,4 +68,33 @@ public class BomStage extends Maze2D {
 		}
 		return false;
 	}
+
+
+
+		public boolean checkGridPoint1(MazeSpritePlayer mazeSpritePlayer2) {
+		// 丸め誤差処理用変数の生成
+		double mazeSpritePositionX = new BigDecimal(mazeSpritePlayer2
+				.getPosition().getX()).setScale(1, BigDecimal.ROUND_DOWN)
+				.doubleValue();
+		double mazeSpritePositionY = new BigDecimal(mazeSpritePlayer2
+				.getPosition().getY()).setScale(1, BigDecimal.ROUND_DOWN)
+				.doubleValue();
+
+		// ステージの構成オブジェクトの位置とプレイヤーの位置が同じかどうかっ判定する
+		for (int i = 0; i < this.getStageObjectList().size(); i++) {
+			if (
+					mazeSpritePositionX == this.getStageObjectList().get(i).getPosition().getX()
+					&& mazeSpritePositionY == this.getStageObjectList().get(i).getPosition().getY()
+				){
+				return true;
+			}
+
+		}
+		return false;
+	}
 }
+
+
+
+
+
