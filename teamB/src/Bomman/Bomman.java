@@ -149,4 +149,3 @@ public class Bomman extends SimpleMazeGame {
 
 }
 
-
