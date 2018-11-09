@@ -41,6 +41,7 @@ public class BomStage extends Maze2D {
 
 		};
 
+
 		return map;
 	}
 

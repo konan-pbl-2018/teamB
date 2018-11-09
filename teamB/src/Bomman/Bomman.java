@@ -19,13 +19,14 @@ public class Bomman extends SimpleMazeGame {
 
 	//private long lastTime;
 
+
 	@Override
 	public void init(Universe universe) {
 		mazeGround = new BomStage("data\\images\\block.gif", "data\\images\\sibafu.jpg");
 
 		universe.place(mazeGround);
 		camera.addTarget(mazeGround);
-		
+
 		//player1
 		mazeSpritePlayer = new MazeSpritePlayer("data\\images\\maincharactor.png");
 		mazeSpritePlayer.setPosition(18.0, 18.0);
@@ -43,9 +44,9 @@ public class Bomman extends SimpleMazeGame {
 	public void progress(RWTVirtualController virtualController, long interval) {
 		// 迷路ゲームステージを構成するオブジェクトの位置とプレイヤーの位置をもとに速度を0にするかどうかを調べる。
 		Position2D gridPoint = mazeGround.getNeighborGridPoint(mazeSpritePlayer);
-		
+
 		double speed = 2.0;
-		
+
 		// 速度が0にするフラグが立っていれば、速度を0にする
 		if (gridPoint != null) {
 			mazeSpritePlayer.setPosition(gridPoint);
@@ -59,23 +60,23 @@ public class Bomman extends SimpleMazeGame {
 			// 左
 			if (virtualController.isKeyDown(0, RWTVirtualController.LEFT)) {
 				mazeSpritePlayer.setVelocity(-speed, 0.0);
-				
+
 			}
 			// 右
 			else if (virtualController.isKeyDown(0, RWTVirtualController.RIGHT)) {
 				mazeSpritePlayer.setVelocity(speed, 0.0);
-				
+
 
 			}
 			// 上
 			else if (virtualController.isKeyDown(0, RWTVirtualController.UP)) {
 				mazeSpritePlayer.setVelocity(0.0, speed);
-				
+
 			}
 			// 下
 			else if (virtualController.isKeyDown(0, RWTVirtualController.DOWN)) {
 				mazeSpritePlayer.setVelocity(0.0, -speed);
-				
+
 			}
 		}
 		mazeSpritePlayer.motion(interval, mazeGround);
@@ -95,27 +96,27 @@ public class Bomman extends SimpleMazeGame {
 			// 左
 			if (virtualController.isKeyDown(0, RWTVirtualController.BUTTON_B)) {
 				mazeSpritePlayer2.setVelocity(-speed, 0.0);
-				
+
 			}
 			// 右
 			else if (virtualController.isKeyDown(0, RWTVirtualController.BUTTON_A)) {
 				mazeSpritePlayer2.setVelocity(speed, 0.0);
-				
+
 
 			}
 			// 上
 			else if (virtualController.isKeyDown(0, RWTVirtualController.BUTTON_E)) {
 				mazeSpritePlayer2.setVelocity(0.0, speed);
-				
+
 			}
 			// 下
 			else if (virtualController.isKeyDown(0, RWTVirtualController.BUTTON_C)) {
 				mazeSpritePlayer2.setVelocity(0.0, -speed);
-				
+
 			}
 		}
 		mazeSpritePlayer2.motion(interval, mazeGround);
-		
+
 		//あたり判定
 		if (mazeSpritePlayer.checkCollision(mazeSpritePlayer2)) {
 			System.out.println("ア〇パ～ンチ！！！　　バイバイキ～〇！？");
