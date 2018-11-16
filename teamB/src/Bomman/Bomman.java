@@ -5,7 +5,6 @@ import framework.RWT.RWTVirtualController;
 import framework.audio.BGM3D;
 import framework.audio.Sound3D;
 import framework.game2D.Position2D;
-import framework.gameMain.IGameState;
 import framework.gameMain.SimpleMazeGame;
 import framework.model3D.Universe;
 import template.maze2D.MazeSpritePlayer;
@@ -17,7 +16,7 @@ public class Bomman extends SimpleMazeGame {
 
 	private BomStage mazeGround;
 
-	private IGameState finalGameState = null;
+	private  BomStage gameOver;
 
 	// 速度によって物体が動いている時にボタンを押せるかどうかを判定するフラグ
 	private boolean disableControl = false;
@@ -139,7 +138,12 @@ public class Bomman extends SimpleMazeGame {
 
 			stop();
 
-			
+			gameOver = new BomStage(null,null);
+
+			universe.place(gameOver);
+
+
+
 
 
 			//mazeGround = new BomStage("data\\images\\opening.png");
@@ -147,6 +151,7 @@ public class Bomman extends SimpleMazeGame {
 			//camera.addTarget(mazeGround);
 		}
 	}
+
 
 
 	@Override
