@@ -19,17 +19,18 @@ public class Bomman extends SimpleMazeGame {
 	// 速度によって物体が動いている時にボタンを押せるかどうかを判定するフラグ
 	private boolean disableControl = false;
 
-	private Sound3D fightBGM = BGM3D.registerBGM("data\\\\images\\last-war.wav");
+	private Sound3D fightBGM = BGM3D.registerBGM("data\\images\\last-war.wav");
+	
 
 	@Override
 	public void init(Universe universe) {
 
-		mazeGround = new BomStage("data\\images\\block.gif", "data\\images\\sibafu.jpg");
 
 
 
 
 		mazeGround = new BomStage("data\\images\\brokenblock.png", "data\\images\\sibafu.jpg");
+
 	universe.place(mazeGround);
 		camera.addTarget(mazeGround);
 
@@ -47,6 +48,7 @@ public class Bomman extends SimpleMazeGame {
 		BGM3D.playBGM(fightBGM);
 	}
 
+	
 	@Override
 	public void progress(RWTVirtualController virtualController, long interval) {
 		// 迷路ゲームステージを構成するオブジェクトの位置とプレイヤーの位置をもとに速度を0にするかどうかを調べる。
@@ -127,6 +129,7 @@ public class Bomman extends SimpleMazeGame {
 		//あたり判定
 		if (mazeSpritePlayer.checkCollision(mazeSpritePlayer2)) {
 			System.out.println("ア〇パ～ンチ！！！　　バイバイキ～〇！？");
+			//mazeGround = new BomStage("data\\images\\opening.png");
 		}
 	}
 
