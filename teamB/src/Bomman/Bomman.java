@@ -19,8 +19,10 @@ public class Bomman extends SimpleMazeGame {
 	// 速度によって物体が動いている時にボタンを押せるかどうかを判定するフラグ
 	private boolean disableControl = false;
 
+
 	private Sound3D fightBGM = BGM3D.registerBGM("data\\images\\last-war.wav");
-	
+
+
 
 	@Override
 	public void init(Universe universe) {
@@ -45,10 +47,10 @@ public class Bomman extends SimpleMazeGame {
 		mazeSpritePlayer2.setPosition(2.0, 2.0);
 		mazeSpritePlayer2.setCollisionRadius(0.5);
 		universe.place(mazeSpritePlayer2);
-		BGM3D.playBGM(fightBGM);
+		//BGM3D.playBGM(fightBGM);
 	}
 
-	
+
 	@Override
 	public void progress(RWTVirtualController virtualController, long interval) {
 		// 迷路ゲームステージを構成するオブジェクトの位置とプレイヤーの位置をもとに速度を0にするかどうかを調べる。
