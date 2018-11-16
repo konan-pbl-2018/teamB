@@ -108,23 +108,23 @@ public class Bomman extends SimpleMazeGame {
 		if(!disableControl){
 			// ÉLÅ[ëÄçÏÇÃèàóù
 			// ç∂
-			if (virtualController.isKeyDown(0, RWTVirtualController.BUTTON_B)) {
+			if (virtualController.isKeyDown(1, RWTVirtualController.LEFT)) {
 				mazeSpritePlayer2.setVelocity(-speed2, 0.0);
 
 			}
 			// âE
-			else if (virtualController.isKeyDown(0, RWTVirtualController.BUTTON_A)) {
+			else if (virtualController.isKeyDown(1, RWTVirtualController.RIGHT)) {
 				mazeSpritePlayer2.setVelocity(speed2, 0.0);
 
 
 			}
 			// è„
-			else if (virtualController.isKeyDown(0, RWTVirtualController.BUTTON_E)) {
+			else if (virtualController.isKeyDown(1, RWTVirtualController.UP)) {
 				mazeSpritePlayer2.setVelocity(0.0, speed2);
 
 			}
 			// â∫
-			else if (virtualController.isKeyDown(0, RWTVirtualController.BUTTON_C)) {
+			else if (virtualController.isKeyDown(1, RWTVirtualController.DOWN)) {
 				mazeSpritePlayer2.setVelocity(0.0, -speed2);
 
 			}
