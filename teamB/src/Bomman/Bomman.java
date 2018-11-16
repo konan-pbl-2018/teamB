@@ -5,6 +5,7 @@ import framework.RWT.RWTVirtualController;
 import framework.audio.BGM3D;
 import framework.audio.Sound3D;
 import framework.game2D.Position2D;
+import framework.gameMain.IGameState;
 import framework.gameMain.SimpleMazeGame;
 import framework.model3D.Universe;
 import template.maze2D.MazeSpritePlayer;
@@ -16,12 +17,13 @@ public class Bomman extends SimpleMazeGame {
 
 	private BomStage mazeGround;
 
+	private IGameState finalGameState = null;
+
 	// 速度によって物体が動いている時にボタンを押せるかどうかを判定するフラグ
 	private boolean disableControl = false;
 
 
 	private Sound3D fightBGM = BGM3D.registerBGM("data\\images\\last-war.wav");
-
 
 
 	@Override
@@ -47,7 +49,7 @@ public class Bomman extends SimpleMazeGame {
 		mazeSpritePlayer2.setPosition(2.0, 2.0);
 		mazeSpritePlayer2.setCollisionRadius(0.5);
 		universe.place(mazeSpritePlayer2);
-		//BGM3D.playBGM(fightBGM);
+		BGM3D.playBGM(fightBGM);
 	}
 
 
@@ -56,7 +58,9 @@ public class Bomman extends SimpleMazeGame {
 		// 迷路ゲームステージを構成するオブジェクトの位置とプレイヤーの位置をもとに速度を0にするかどうかを調べる。
 		Position2D gridPoint = mazeGround.getNeighborGridPoint(mazeSpritePlayer);
 
-		double speed = 2.0;
+		double speed1 = 2.15;
+		double speed2 = 2.0;
+
 
 		// 速度が0にするフラグが立っていれば、速度を0にする
 		if (gridPoint != null) {
@@ -70,23 +74,23 @@ public class Bomman extends SimpleMazeGame {
 			// キー操作の処理
 			// 左
 			if (virtualController.isKeyDown(0, RWTVirtualController.LEFT)) {
-				mazeSpritePlayer.setVelocity(-speed, 0.0);
+				mazeSpritePlayer.setVelocity(-speed1, 0.0);
 
 			}
 			// 右
 			else if (virtualController.isKeyDown(0, RWTVirtualController.RIGHT)) {
-				mazeSpritePlayer.setVelocity(speed, 0.0);
+				mazeSpritePlayer.setVelocity(speed1, 0.0);
 
 
 			}
 			// 上
 			else if (virtualController.isKeyDown(0, RWTVirtualController.UP)) {
-				mazeSpritePlayer.setVelocity(0.0, speed);
+				mazeSpritePlayer.setVelocity(0.0, speed1);
 
 			}
 			// 下
 			else if (virtualController.isKeyDown(0, RWTVirtualController.DOWN)) {
-				mazeSpritePlayer.setVelocity(0.0, -speed);
+				mazeSpritePlayer.setVelocity(0.0, -speed1);
 
 			}
 		}
@@ -106,23 +110,23 @@ public class Bomman extends SimpleMazeGame {
 			// キー操作の処理
 			// 左
 			if (virtualController.isKeyDown(0, RWTVirtualController.BUTTON_B)) {
-				mazeSpritePlayer2.setVelocity(-speed, 0.0);
+				mazeSpritePlayer2.setVelocity(-speed2, 0.0);
 
 			}
 			// 右
 			else if (virtualController.isKeyDown(0, RWTVirtualController.BUTTON_A)) {
-				mazeSpritePlayer2.setVelocity(speed, 0.0);
+				mazeSpritePlayer2.setVelocity(speed2, 0.0);
 
 
 			}
 			// 上
 			else if (virtualController.isKeyDown(0, RWTVirtualController.BUTTON_E)) {
-				mazeSpritePlayer2.setVelocity(0.0, speed);
+				mazeSpritePlayer2.setVelocity(0.0, speed2);
 
 			}
 			// 下
 			else if (virtualController.isKeyDown(0, RWTVirtualController.BUTTON_C)) {
-				mazeSpritePlayer2.setVelocity(0.0, -speed);
+				mazeSpritePlayer2.setVelocity(0.0, -speed2);
 
 			}
 		}
@@ -131,7 +135,16 @@ public class Bomman extends SimpleMazeGame {
 		//あたり判定
 		if (mazeSpritePlayer.checkCollision(mazeSpritePlayer2)) {
 			System.out.println("ア〇パ～ンチ！！！　　バイバイキ～〇！？");
+
+
+			stop();
+
+			
+
+
 			//mazeGround = new BomStage("data\\images\\opening.png");
+			//universe.place(mazeGround);
+			//camera.addTarget(mazeGround);
 		}
 	}
 
@@ -153,6 +166,7 @@ public class Bomman extends SimpleMazeGame {
 		Bomman game = new Bomman();
 		game.setFramePolicy(5, 33, false);
 		game.start();
+
 	}
 
 }
